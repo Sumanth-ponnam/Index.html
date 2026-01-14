@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sai Sumanth Ponnam — UI/UX + Frontend Portfolio</title>
+  <meta name="description" content="UI/UX-focused Frontend Engineer portfolio — case studies, skills, and projects." />
+  <style>
+    :root{
+      --bg:#0b0f17;
+      --card:#111827;
+      --muted:#94a3b8;
+      --text:#e5e7eb;
+      --line:#1f2a44;
+      --brand:#60a5fa;
+      --brand2:#a78bfa;
+      --good:#34d399;
+      --warn:#fbbf24;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+      --max: 1120px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji"; background:radial-gradient(1200px 700px at 20% 0%, rgba(96,165,250,.18), transparent 55%),
+      radial-gradient(1000px 700px at 80% 10%, rgba(167,139,250,.18), transparent 55%),
+      var(--bg); color:var(--text); scroll-behavior:smooth}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--max);margin:0 auto;padding:24px}
+    .nav{
+      position:sticky;top:0;z-index:20;
+      backdrop-filter: blur(10px);
+      background: rgba(11,15,23,.65);
+      border-bottom:1px solid rgba(31,42,68,.7);
+    }
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;gap:10px;align-items:center;font-weight:700;letter-spacing:.2px}
+    .dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,var(--brand),var(--brand2));box-shadow:0 0 0 4px rgba(96,165,250,.12)}
+    .links{display:flex;gap:14px;flex-wrap:wrap;justify-content:flex-end}
+    .pill{
+      padding:10px 12px;border:1px solid rgba(31,42,68,.9);
+      border-radius:999px;color:var(--muted);
+      transition:.2s ease; font-size:14px
+    }
+    .pill:hover{border-color:rgba(96,165,250,.65); color:var(--text); transform:translateY(-1px)}
+    .hero{padding:64px 0 34px}
+    .grid{display:grid;grid-template-columns:1.25fr .75fr;gap:18px}
+    .card{
+      background: rgba(17,24,39,.78);
+      border:1px solid rgba(31,42,68,.8);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .card.pad{padding:22px}
+    h1{font-size:44px;line-height:1.05;margin:0 0 10px}
+    .sub{color:var(--muted);font-size:16px;line-height:1.6;margin:0 0 18px}
+    .cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:12px 14px;border-radius:14px;border:1px solid rgba(31,42,68,.9);
+      background:rgba(11,15,23,.35);
+      transition:.2s ease;font-weight:600;font-size:14px
+    }
+    .btn:hover{transform:translateY(-1px);border-color:rgba(96,165,250,.7)}
+    .btn.primary{
+      background:linear-gradient(135deg, rgba(96,165,250,.22), rgba(167,139,250,.18));
+      border-color:rgba(96,165,250,.55)
+    }
+    .meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+    .tag{
+      font-size:12px; color:var(--muted);
+      padding:8px 10px;border:1px solid rgba(31,42,68,.9);
+      border-radius:999px;
+      background:rgba(11,15,23,.25);
+    }
+    .side h3{margin:0 0 12px;font-size:14px;color:var(--muted);font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+    .stat{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:12px 14px;border-radius:14px;border:1px solid rgba(31,42,68,.85);
+      background:rgba(11,15,23,.25); margin-bottom:10px
+    }
+    .stat b{font-size:14px}
+    .stat span{font-size:13px;color:var(--muted)}
+    section{padding:26px 0}
+    .section-title{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:14px}
+    .section-title h2{margin:0;font-size:20px}
+    .section-title p{margin:0;color:var(--muted);font-size:14px}
+    .cols-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .cols-2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .item{padding:18px;border-radius:16px;border:1px solid rgba(31,42,68,.85);background:rgba(11,15,23,.25)}
+    .item h3{margin:0 0 8px;font-size:16px}
+    .item p{margin:0;color:var(--muted);font-size:14px;line-height:1.6}
+    .kpis{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+    .kpi{font-size:12px;padding:6px 9px;border-radius:999px;border:1px solid rgba(31,42,68,.85);color:var(--muted)}
+    .kpi.good{border-color:rgba(52,211,153,.45); color:#b9f6dd}
+    .kpi.warn{border-color:rgba(251,191,36,.45); color:#fde9b2}
+    .divider{height:1px;background:rgba(31,42,68,.85);margin:18px 0}
+    .list{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+    .li{
+      display:flex;gap:10px;align-items:flex-start;
+      padding:12px 14px;border-radius:14px;
+      border:1px solid rgba(31,42,68,.85); background:rgba(11,15,23,.25)
+    }
+    .bullet{width:10px;height:10px;border-radius:3px;background:rgba(96,165,250,.8);margin-top:6px;flex:0 0 auto}
+    .footer{padding:34px 0 60px;color:var(--muted)}
+    .tiny{font-size:12px;color:var(--muted)}
+    .right{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}
+    @media (max-width: 980px){
+      .grid{grid-template-columns:1fr; }
+      h1{font-size:36px}
+      .cols-3{grid-template-columns:1fr}
+      .cols-2{grid-template-columns:1fr}
+      .links{justify-content:flex-start}
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NAV -->
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top" aria-label="Home">
+        <span class="dot"></span>
+        <span>Sai Sumanth Ponnam</span>
+      </a>
+      <nav class="links" aria-label="Primary">
+        <a class="pill" href="#work">Case Studies</a>
+        <a class="pill" href="#skills">Skills</a>
+        <a class="pill" href="#projects">Projects</a>
+        <a class="pill" href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main id="top" class="container">
+    <section class="hero">
+      <div class="grid">
+        <div class="card pad">
+          <h1>UI/UX-minded Frontend Engineer building fast, accessible web products.</h1>
+          <p class="sub">
+            4+ years building and optimizing large-scale, user-centric applications with <b>React / Next.js / TypeScript</b>.
+            I care about <b>craft</b>, <b>performance</b>, <b>accessibility</b>, and <b>developer experience</b>.
+          </p>
+
+          <div class="cta-row">
+            <a class="btn primary" href="#work">View case studies</a>
+            <a class="btn" href="#contact">Contact</a>
+            <a class="btn" href="mailto:sumanthponnam01@gmail.com">sumanthponnam01@gmail.com</a>
+          </div>
+
+          <div class="meta">
+            <span class="tag">React / Next.js</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">Design Systems</span>
+            <span class="tag">WCAG 2.1</span>
+            <span class="tag">Core Web Vitals</span>
+            <span class="tag">CI/CD</span>
+          </div>
+
+          <div class="divider"></div>
+
+          <ul class="list">
+            <li class="li">
+              <span class="bullet"></span>
+              <div>
+                <b>Recent highlight:</b> Modernized a high-traffic portal used by <b>1M+ monthly users</b>, improving Lighthouse <b>68 → 97</b> and reducing load time by ~<b>2s</b>.
+              </div>
+            </li>
+            <li class="li">
+              <span class="bullet"></span>
+              <div>
+                <b>Design-to-code:</b> Partner with PM/Design early, translate Figma into pixel-perfect, accessible components, and iterate with metrics.
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <aside class="card pad side">
+          <h3>Quick facts</h3>
+          <div class="stat"><b>Location</b><span>USA (open to remote)</span></div>
+          <div class="stat"><b>Focus</b><span>UX + Performance + Accessibility</span></div>
+          <div class="stat"><b>Tooling</b><span>Jest, Cypress, Playwright</span></div>
+          <div class="stat"><b>Design</b><span>Figma handoff & specs</span></div>
+          <div class="stat"><b>Cloud</b><span>AWS, Docker, CI/CD</span></div>
+          <div class="divider"></div>
+          <h3>Links</h3>
+          <div class="right">
+            <!-- Replace with your real URLs -->
+            <a class="pill" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a class="pill" href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="pill" href="#contact">Resume</a>
+          </div>
+          <p class="tiny" style="margin-top:14px">
+            Tip: replace LinkedIn/GitHub links above with yours.
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- CASE STUDIES -->
+    <section id="work">
+      <div class="section-title">
+        <h2>Case Studies</h2>
+        <p>Real work, measurable outcomes, UX-first approach.</p>
+      </div>
+
+      <div class="cols-2">
+        <article class="card pad">
+          <h3>Comcast — Customer Self-Service Portal Modernization</h3>
+          <p class="sub" style="margin:8px 0 0">
+            Led frontend modernization for a high-traffic portal used by <b>1M+ monthly users</b>.
+            Built reusable UI patterns, improved performance and accessibility, and increased developer velocity.
+          </p>
+
+          <div class="kpis">
+            <span class="kpi good">Lighthouse 68 → 97</span>
+            <span class="kpi good">~2s faster load</span>
+            <span class="kpi good">Bundle -35%</span>
+            <span class="kpi good">Dup code -45%</span>
+            <span class="kpi warn">80+ components WCAG</span>
+          </div>
+
+          <div class="divider"></div>
+
+          <ul class="list">
+            <li class="li"><span class="bullet"></span><div><b>UX:</b> standardized layout/interaction patterns, reduced UI inconsistency, improved navigation clarity.</div></li>
+            <li class="li"><span class="bullet"></span><div><b>Perf:</b> code-splitting, lazy loading, memoization, caching, and API optimization.</div></li>
+            <li class="li"><span class="bullet"></span><div><b>Accessibility:</b> semantic HTML, keyboard flows, ARIA patterns, WCAG remediation.</div></li>
+            <li class="li"><span class="bullet"></span><div><b>Quality:</b> CI/CD with GitHub Actions + Cypress regression coverage.</div></li>
+          </ul>
+        </article>
+
+        <article class="card pad">
+          <h3>eBay — Seller Analytics Dashboard</h3>
+          <p class="sub" style="margin:8px 0 0">
+            Built a KPI dashboard with real-time visualization and polished UX for sellers.
+            Focused on information hierarchy, UI clarity, and smooth rendering at scale.
+          </p>
+
+          <div class="kpis">
+            <span class="kpi good">Adoption +22%</span>
+            <span class="kpi good">Re-renders -28%</span>
+            <span class="kpi warn">CLS improved</span>
+          </div>
+
+          <div class="divider"></div>
+
+          <ul class="list">
+            <li class="li"><span class="bullet"></span><div><b>UX:</b> simplified layout, improved scanning and grouping of key metrics.</div></li>
+            <li class="li"><span class="bullet"></span><div><b>Perf:</b> React.memo, Suspense, render profiling, and cleanup of stateful components.</div></li>
+            <li class="li"><span class="bullet"></span><div><b>Accessibility:</b> addressed WCAG issues with design + QA collaboration.</div></li>
+            <li class="li"><span class="bullet"></span><div><b>Testing:</b> Jest + React Testing Library; improved confidence in releases.</div></li>
+          </ul>
+        </article>
+      </div>
+
+      <div style="height:14px"></div>
+
+      <div class="cols-2">
+        <article class="card pad">
+          <h3>Dentsu — Marketing Analytics Platform</h3>
+          <p class="sub" style="margin:8px 0 0">
+            Migrated legacy UIs to modular React components and improved performance/SEO for campaign experiences.
+          </p>
+
+          <div class="kpis">
+            <span class="kpi good">Reporting +50%</span>
+            <span class="kpi good">Defects -35%</span>
+          </div>
+
+          <div class="divider"></div>
+
+          <ul class="list">
+            <li class="li"><span class="bullet"></span><div><b>UI systems:</b> reusable components + predictable state patterns.</div></li>
+            <li class="li"><span class="bullet"></span><div><b>Quality:</b> Cypress in Jenkins to reduce QA cycle time.</div></li>
+            <li class="li"><span class="bullet"></span><div><b>Growth:</b> SEO + performance improvements for better visibility.</div></li>
+          </ul>
+        </article>
+
+        <article class="card pad">
+          <h3>How I Work</h3>
+          <p class="sub" style="margin:8px 0 0">
+            My default is “fast + high quality”: align early, ship in slices, measure impact, and keep codebase maintainable.
+          </p>
+
+          <div class="divider"></div>
+
+          <ul class="list">
+            <li class="li"><span class="bullet"></span><div><b>Discovery:</b> clarify the user + business goal, define success metrics.</div></li>
+            <li class="li"><span class="bullet"></span><div><b>Design alignment:</b> review Figma, call out edge cases, propose simpler flows.</div></li>
+            <li class="li"><span class="bullet"></span><div><b>Build:</b> reusable components, accessible patterns, and stable APIs.</div></li>
+            <li class="li"><span class="bullet"></span><div><b>Measure:</b> Lighthouse/Core Web Vitals, error logs, adoption/engagement.</div></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="section-title">
+        <h2>Skills</h2>
+        <p>Tools I use to build, ship, and iterate.</p>
+      </div>
+
+      <div class="cols-3">
+        <div class="item">
+          <h3>Frontend</h3>
+          <p>React, Next.js, TypeScript, Redux, Tailwind, Material UI, Styled Components.</p>
+        </div>
+        <div class="item">
+          <h3>UX / Quality</h3>
+          <p>WCAG 2.1, semantic HTML, keyboard navigation, design systems, pixel-perfect UI.</p>
+        </div>
+        <div class="item">
+          <h3>Performance</h3>
+          <p>Lighthouse, Core Web Vitals, code splitting, lazy loading, profiling, caching.</p>
+        </div>
+        <div class="item">
+          <h3>Testing</h3>
+          <p>Jest, React Testing Library, Cypress, Playwright, Postman.</p>
+        </div>
+        <div class="item">
+          <h3>Build & Deploy</h3>
+          <p>GitHub Actions, Jenkins, Webpack, Babel, Docker, Vercel, Netlify.</p>
+        </div>
+        <div class="item">
+          <h3>Design</h3>
+          <p>Figma design handoff, component inspection, specs extraction, collaboration.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="section-title">
+        <h2>Projects</h2>
+        <p>Add links/screenshots later — start with strong descriptions.</p>
+      </div>
+
+      <div class="cols-2">
+        <div class="item">
+          <h3>AWS Research Platform UI</h3>
+          <p>Migrated a legacy UI to React and deployed on AWS. Built CI/CD with GitHub Actions and improved accessibility and cross-device performance.</p>
+          <div class="kpis">
+            <span class="kpi">React</span><span class="kpi">AWS</span><span class="kpi">CI/CD</span><span class="kpi">A11y</span>
+          </div>
+          <p class="tiny" style="margin-top:10px">Link: <span class="mono">add-your-url</span></p>
+        </div>
+
+        <div class="item">
+          <h3>Diabetes Risk ML App</h3>
+          <p>Built a React frontend connected to a Python API with real-time visualizations and clean error handling, focused on clarity and usability.</p>
+          <div class="kpis">
+            <span class="kpi">React</span><span class="kpi">Python API</span><span class="kpi">Charts</span>
+          </div>
+          <p class="tiny" style="margin-top:10px">Link: <span class="mono">add-your-url</span></p>
+        </div>
+
+        <div class="item">
+          <h3>Inventory Management System</h3>
+          <p>React dashboard with CRUD workflows and efficient state management for a Java/MySQL backend. Designed for speed, clarity, and maintainability.</p>
+          <div class="kpis">
+            <span class="kpi">React</span><span class="kpi">MySQL</span><span class="kpi">API</span>
+          </div>
+          <p class="tiny" style="margin-top:10px">Link: <span class="mono">add-your-url</span></p>
+        </div>
+
+        <div class="item">
+          <h3>Design System Starter</h3>
+          <p>A reusable component starter (buttons, inputs, modals, tables) with accessibility patterns and tokens to speed up product development.</p>
+          <div class="kpis">
+            <span class="kpi">Tokens</span><span class="kpi">A11y</span><span class="kpi">Reusable UI</span>
+          </div>
+          <p class="tiny" style="margin-top:10px">Link: <span class="mono">add-your-url</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="section-title">
+        <h2>Contact</h2>
+        <p>Let’s build something great.</p>
+      </div>
+
+      <div class="cols-2">
+        <div class="card pad">
+          <h3 style="margin:0 0 10px">Reach me</h3>
+          <p class="sub" style="margin:0 0 14px">
+            Email is the fastest. I’m happy to share a PDF resume, deeper case studies, or walkthroughs.
+          </p>
+          <div class="cta-row">
+            <a class="btn primary" href="mailto:sumanthponnam01@gmail.com">Email me</a>
+            <a class="btn" href="tel:+16026572855">Call: +1 (602) 657-2855</a>
+          </div>
+          <div class="divider"></div>
+          <p class="tiny">
+            Replace the LinkedIn/GitHub URLs in the header with your real links:
+            <span class="mono">linkedin.com/in/saisumanthponnam</span> • <span class="mono">github.com/sumanthponnam</span>
+          </p>
+        </div>
+
+        <div class="card pad">
+          <h3 style="margin:0 0 10px">Quick intro</h3>
+          <p class="sub" style="margin:0 0 14px">
+            I build fast, accessible interfaces with clean architecture. Strong in React/TypeScript, performance optimization,
+            and collaborating across product/design/engineering.
+          </p>
+          <ul class="list">
+            <li class="li"><span class="bullet"></span><div><b>Best fit:</b> Frontend / Product engineering roles</div></li>
+            <li class="li"><span class="bullet"></span><div><b>Strength:</b> turning complex flows into simple UX</div></li>
+            <li class="li"><span class="bullet"></span><div><b>Mindset:</b> metrics-driven + high quality bar</div></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="divider"></div>
+      <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
+        <div>© <span id="year"></span> Sai Sumanth Ponnam</div>
+        <div class="tiny">Built with HTML/CSS. Deploy on GitHub Pages / Netlify / Vercel.</div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
